@@ -1,7 +1,6 @@
-# go run 1.3-dup.go
-# type lines, then Ctrl+D (EOF)
+# cat ../input/1.3-dup.input.txt | go run 1.3-dup.go
 #
-# Example stdin:
+# Example stdin (input/1.3-dup.input.txt):
 #   hello
 #   world
 #   hello

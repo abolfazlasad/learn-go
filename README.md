@@ -26,7 +26,7 @@ make watch                     # go run the file whenever I save it under myAnsw
 
 `make questions` never overwrites a file I already started. `make clean-unchanged-questions` only removes copies I have not changed. `make clean-all-questions` removes all working copies, including edits.
 
-For a fast edit loop, copy the questions, then leave watch running in a terminal. Saving a `.go` file in any chapter `myAnswer/` runs that file (`go run`, or `go test` for `*_test.go`). Saving again stops the previous run first, so a web server can be restarted by saving.
+For a fast edit loop, copy the questions, then leave watch running in a terminal. Saving a `.go` file in any chapter `myAnswer/` runs that file (`go run`, or `go test` for `*_test.go`). If the chapter has a matching file under `input/` (for example `01-tutorial/input/1.3-dup.input.txt`), watch pipes it to stdin: `cat ../input/1.3-dup.input.txt | go run 1.3-dup.go`. Saving the Go file or that input file again stops the previous run first, so a web server can be restarted by saving.
 
 ```bash
 make questions

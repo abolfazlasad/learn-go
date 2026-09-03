@@ -6,9 +6,9 @@
 //
 // You will need: bufio.Scanner, os.Stdin, map[string]int, ranging over a map.
 //
-// Run (Ctrl+D to send EOF on macOS/Linux):
-//   go run 1.3-dup.go
-// Then type a few repeated lines.
+// Run:
+//   cat ../input/1.3-dup.input.txt | go run 1.3-dup.go
+// Or type lines, then Ctrl+D (EOF on macOS/Linux).
 
 package main
 

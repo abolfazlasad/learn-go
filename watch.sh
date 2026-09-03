@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Watch every chapter myAnswer/ dir. On save, print questions/<name>.expected.txt
 # when it exists, then run that file with go run (or go test for *_test.go).
+# If input/<name>.input.txt exists, pipe it to stdin:
+#   cat ../input/<name>.input.txt | go run <name>.go
 # Infinite loop until Ctrl+C.
 #
 #   ./watch.sh
@@ -55,14 +57,46 @@ banner() {
 	echo
 }
 
-expected_file_for() {
-	local file="$1"
-	local chapter_dir stem
-	chapter_dir="$(cd "$(dirname "$file")/.." && pwd)"
-	stem="$(basename "$file")"
+stem_of() {
+	local stem
+	stem="$(basename "$1")"
 	stem="${stem%.go}"
 	stem="${stem%_test}"
-	printf '%s/questions/%s.expected.txt' "$chapter_dir" "$stem"
+	stem="${stem%.input.txt}"
+	printf '%s' "$stem"
+}
+
+chapter_dir_of() {
+	local dir base
+	dir="$(cd "$(dirname "$1")" && pwd)"
+	base="$(basename "$dir")"
+	case "$base" in
+	myAnswer|questions|input)
+		cd "$dir/.." && pwd
+		;;
+	*)
+		printf '%s' "$dir"
+		;;
+	esac
+}
+
+expected_file_for() {
+	local file="$1"
+	printf '%s/questions/%s.expected.txt' "$(chapter_dir_of "$file")" "$(stem_of "$file")"
+}
+
+input_file_for() {
+	local file="$1"
+	local input
+	input="$(chapter_dir_of "$file")/input/$(stem_of "$file").input.txt"
+	if [[ -f "$input" ]]; then
+		printf '%s' "$input"
+	fi
+}
+
+answer_file_for() {
+	local file="$1"
+	printf '%s/myAnswer/%s.go' "$(chapter_dir_of "$file")" "$(stem_of "$file")"
 }
 
 print_expected() {
@@ -78,9 +112,16 @@ print_expected() {
 
 run_go() {
 	local file="$1"
-	local dir base impl testf expected
+	local dir base impl testf expected input
 	dir="$(dirname "$file")"
 	base="$(basename "$file")"
+
+	if [[ "$base" == *.input.txt ]]; then
+		file="$(answer_file_for "$file")"
+		dir="$(dirname "$file")"
+		base="$(basename "$file")"
+		[[ -f "$file" ]] || return
+	fi
 
 	stop_run
 
@@ -89,6 +130,12 @@ run_go() {
 	expected="$(expected_file_for "$file")"
 	if print_expected "$expected"; then
 		banner "your output"
+	fi
+
+	input="$(input_file_for "$file")"
+	if [[ -n "$input" ]]; then
+		echo "stdin: cat ../input/$(basename "$input") | go run $base"
+		echo
 	fi
 
 	(
@@ -104,6 +151,8 @@ run_go() {
 			testf="${base%.go}_test.go"
 			if [[ -f "$testf" ]] && ! grep -q '^package main' "$base"; then
 				go test "$base" "$testf"
+			elif [[ -n "$input" ]]; then
+				cat "$input" | go run "$base"
 			else
 				go run "$base"
 			fi
@@ -112,11 +161,14 @@ run_go() {
 	GO_PID=$!
 }
 
-list_answers() {
+list_watched() {
 	local ch
 	for ch in "$ROOT"/[0-9][0-9]-*; do
 		[[ -d "$ch/myAnswer" ]] || continue
 		find "$ch/myAnswer" -type f -name '*.go' 2>/dev/null
+		if [[ -d "$ch/input" ]]; then
+			find "$ch/input" -type f -name '*.input.txt' 2>/dev/null
+		fi
 	done
 }
 
@@ -124,11 +176,12 @@ list_answers() {
 while IFS= read -r file; do
 	[[ -n "$file" ]] || continue
 	mtime_of "$file" >"$(state_path "$file")"
-done < <(list_answers)
+done < <(list_watched)
 
 echo "watch: $ROOT"
 echo "watch: saving a .go file in any chapter myAnswer/ runs it"
 echo "watch: prints questions/<name>.expected.txt first when that file exists"
+echo "watch: if input/<name>.input.txt exists, pipes it: cat ../input/<name>.input.txt | go run ..."
 echo "watch: Ctrl+C to stop (also stops a running program)"
 echo
 
@@ -144,6 +197,6 @@ while true; do
 			printf '%s' "$now" >"$stamp"
 			run_go "$file"
 		fi
-	done < <(list_answers)
+	done < <(list_watched)
 	sleep 0.4
 done
