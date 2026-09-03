@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Watch every chapter myAnswer/ dir. On save, run that file with go run
-# (or go test for *_test.go). Infinite loop until Ctrl+C.
+# Watch every chapter myAnswer/ dir. On save, print questions/<name>.expected.txt
+# when it exists, then run that file with go run (or go test for *_test.go).
+# Infinite loop until Ctrl+C.
 #
 #   ./watch.sh
 #   make watch
@@ -54,15 +55,41 @@ banner() {
 	echo
 }
 
+expected_file_for() {
+	local file="$1"
+	local chapter_dir stem
+	chapter_dir="$(cd "$(dirname "$file")/.." && pwd)"
+	stem="$(basename "$file")"
+	stem="${stem%.go}"
+	stem="${stem%_test}"
+	printf '%s/questions/%s.expected.txt' "$chapter_dir" "$stem"
+}
+
+print_expected() {
+	local expected="$1"
+	if [[ ! -f "$expected" ]]; then
+		return 1
+	fi
+	banner "expected output"
+	cat "$expected"
+	echo
+	return 0
+}
+
 run_go() {
 	local file="$1"
-	local dir base impl testf
+	local dir base impl testf expected
 	dir="$(dirname "$file")"
 	base="$(basename "$file")"
 
 	stop_run
 
 	banner "$(date '+%H:%M:%S')  $file"
+
+	expected="$(expected_file_for "$file")"
+	if print_expected "$expected"; then
+		banner "your output"
+	fi
 
 	(
 		cd "$dir" || exit 1
@@ -101,6 +128,7 @@ done < <(list_answers)
 
 echo "watch: $ROOT"
 echo "watch: saving a .go file in any chapter myAnswer/ runs it"
+echo "watch: prints questions/<name>.expected.txt first when that file exists"
 echo "watch: Ctrl+C to stop (also stops a running program)"
 echo
 

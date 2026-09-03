@@ -1,0 +1,6 @@
+# go run -race 9.2-bank.go
+#
+# After concurrent Deposit/Withdraw, the printed balance must match the
+# net of successful operations. No DATA RACE. Exact number depends on your hammer.
+
+balance 1000

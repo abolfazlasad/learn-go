@@ -1,0 +1,8 @@
+# go run 2.5-celsius.go
+#
+# Freezing 0C and boiling 100C in both units. Format is up to you.
+
+0C = 32F
+100C = 212F
+32F = 0C
+212F = 100C

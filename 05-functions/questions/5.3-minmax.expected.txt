@@ -1,0 +1,10 @@
+# go run 5.3-minmax.go
+#
+# minmax of a non-empty slice returns min and max. Empty slice is an error.
+# Example for []int{3, 1, 4, 1, 5}:
+
+1 5
+
+# empty:
+
+minmax: empty slice

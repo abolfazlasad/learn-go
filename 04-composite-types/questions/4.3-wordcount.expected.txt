@@ -1,0 +1,6 @@
+# go run 4.3-wordcount.go go go rust go
+#
+# Counts, keys printed in sorted order. A missing-key lookup uses v, ok := m[k].
+
+go 3
+rust 1

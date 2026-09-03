@@ -1,0 +1,6 @@
+# go run 5.4-retry.go
+#
+# retry calls f up to times. If all fail, print the last error. Never ignore err.
+# Exact wording depends on your errors.New / fmt.Errorf text.
+
+even: n is even

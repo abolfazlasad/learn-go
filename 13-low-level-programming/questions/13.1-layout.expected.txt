@@ -1,0 +1,13 @@
+# go run 13.1-layout.go
+#
+# Sizes on a typical 64-bit machine. string is 16, []int is 24.
+# struct { bool; float64; int32 } is 24 with padding.
+# Reordering to { float64; int32; bool } is 16.
+
+int 8
+int32 4
+int64 8
+string 16
+[]int 24
+S 24
+S reordered 16

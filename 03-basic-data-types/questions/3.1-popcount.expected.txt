@@ -1,0 +1,8 @@
+# go run 3.1-popcount.go
+#
+# popcount of 0, 1, 255, and ^uint64(0). Extra binary prints are optional.
+
+0
+1
+8
+64

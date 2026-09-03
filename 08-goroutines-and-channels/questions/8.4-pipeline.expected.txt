@@ -1,0 +1,14 @@
+# go run 8.4-pipeline.go
+#
+# Squares of 1..10, one per line (or all on one line).
+
+1
+4
+9
+16
+25
+36
+49
+64
+81
+100

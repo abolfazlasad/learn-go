@@ -1,0 +1,6 @@
+# go run 10.4-imports.go
+#
+# Uses both fmt (aliased as f) and strings. Unused imports must not compile.
+# Example if you print strings.ToUpper("hello"):
+
+HELLO

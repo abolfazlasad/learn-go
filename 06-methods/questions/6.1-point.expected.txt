@@ -1,0 +1,7 @@
+# go run 6.1-point.go
+#
+# p.Distance(q) and Distance(p, q) should print the same number.
+# Example: (1,2) to (4,6) is 5.
+
+5
+5

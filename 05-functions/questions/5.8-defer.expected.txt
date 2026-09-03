@@ -1,0 +1,8 @@
+# go run 5.8-defer.go
+#
+# Body prints first. Deferred Println runs LIFO after the function returns.
+
+body
+third
+second
+first

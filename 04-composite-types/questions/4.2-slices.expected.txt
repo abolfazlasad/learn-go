@@ -1,0 +1,9 @@
+# go run 4.2-slices.go
+#
+# Start from []int{0, 1, 2, 3, 4, 5}.
+# s[1:4] is [1 2 3]. make([]int, 0, 5) has len 0 cap 5.
+# reverse in place. Ignoring append's return must not grow the slice you keep.
+
+[1 2 3]
+len=0 cap=5
+[5 4 3 2 1 0]

@@ -1,0 +1,8 @@
+# go run 1.1-hello-world.go
+#
+# Three lines. Greeting may use any name. Date is a string you type, not time.Now.
+# 2+2= must come from 2+2 in code.
+
+Hello, Abolfazl
+4 September 2026
+2+2=4

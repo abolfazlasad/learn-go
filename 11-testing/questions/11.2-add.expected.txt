@@ -1,0 +1,5 @@
+# go test 11.2-add.go 11.2-add_test.go
+#
+# Table-driven TestAdd. All cases pass.
+
+ok

@@ -1,0 +1,15 @@
+# go run 1.5-fetch.go https://example.com
+#
+# Print the HTTP status, then the response body on stdout.
+# Exact HTML can change; status should be 200.
+
+200 OK
+<!doctype html>
+<html>
+<head>
+    <title>Example Domain</title>
+    ...
+</html>
+
+# If Get fails: print the error and exit non-zero.
+# If the URL has no scheme, prepend https:// and retry once.

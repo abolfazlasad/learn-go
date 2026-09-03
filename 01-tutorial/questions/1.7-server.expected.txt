@@ -1,0 +1,16 @@
+# go run 1.7-server.go
+# listens on :8000 (no stdout until a request is handled)
+#
+# curl http://localhost:8000/
+hello
+
+# curl http://localhost:8000/echo/hi
+/echo/hi
+
+# curl http://localhost:8000/time
+# current time; format is up to you
+2026-09-04 00:16:00 -0700 PDT
+
+# curl http://localhost:8000/count
+# number of requests this process has seen so far
+1

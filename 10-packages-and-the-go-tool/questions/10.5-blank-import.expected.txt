@@ -1,0 +1,5 @@
+# go run 10.5-blank-import.go
+#
+# Package-level init runs before main.
+
+init ran

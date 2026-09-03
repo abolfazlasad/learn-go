@@ -1,0 +1,7 @@
+# go run 7.13-typeswitch.go
+#
+# stringify via type switch for int, string, and default. Cases from main:
+
+int: 3
+string: hi
+default: true

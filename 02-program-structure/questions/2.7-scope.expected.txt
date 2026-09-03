@@ -1,0 +1,6 @@
+# go run 2.7-scope.go
+#
+# Inner block prints 2. After the block, outer x is still 1.
+
+2
+1

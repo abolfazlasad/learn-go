@@ -1,0 +1,5 @@
+# go run 13.2-pointer.go
+#
+# Bits of float64 1.0 from math.Float64bits.
+
+3ff0000000000000

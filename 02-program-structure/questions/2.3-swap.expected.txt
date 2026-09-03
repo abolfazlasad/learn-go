@@ -1,0 +1,9 @@
+# go run 2.3-swap.go
+#
+# Starting values can differ. After swap they must be exchanged.
+# Zero values of uninitialized int, string, bool:
+
+1 2
+2 1
+0
+false

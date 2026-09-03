@@ -1,0 +1,8 @@
+# go run 12.5-setfield.go
+#
+# ValueOf(x).CanSet() is false. ValueOf(&x).Elem().CanSet() is true.
+# After Set, x is the new int (example: 7).
+
+false
+true
+7

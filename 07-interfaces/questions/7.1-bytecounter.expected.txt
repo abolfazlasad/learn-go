@@ -1,0 +1,6 @@
+# go run 7.1-bytecounter.go
+#
+# fmt.Fprintf into *ByteCounter counts bytes written.
+# Example: writing "hello" (5 bytes).
+
+5

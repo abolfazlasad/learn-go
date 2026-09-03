@@ -1,0 +1,9 @@
+# go run 12.2-describe.go
+#
+# type, kind, and value. Exact fmt verbs can differ.
+
+int int 3
+string string hello
+*int ptr 0x...
+[]int slice [1 2]
+main.T struct {X:1}

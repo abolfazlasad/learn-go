@@ -1,0 +1,9 @@
+# go run 1.6-fetch-concurrent.go https://example.com https://go.dev
+#
+# One summary line per URL (status or error, elapsed time), then total wall time.
+# Times and line order will vary. Concurrent wall time should be close to the
+# slowest URL, not the sum. A failed fetch must still print a line (no deadlock).
+
+https://example.com  200 OK  90ms
+https://go.dev       200 OK  140ms
+total 145ms

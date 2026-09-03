@@ -1,0 +1,8 @@
+# go run 9.1-race.go
+#
+# Two goroutines increment 100000 times each. Total is often not 200000.
+
+173482
+
+# go run -race 9.1-race.go
+# The race detector should report a DATA RACE on that increment.

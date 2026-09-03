@@ -1,0 +1,6 @@
+# go run 8.1-spinner.go
+#
+# Spinner characters (| / - \) print while fib(40) runs, then the result.
+# Spinner frames overwrite the same line; the number is what matters.
+
+102334155

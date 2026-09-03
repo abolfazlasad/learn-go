@@ -1,0 +1,12 @@
+# go run 3.5-runes.go
+#
+# s := "سلام"
+# len(s) is bytes. utf8.RuneCountInString(s) is runes.
+# range yields the byte index of each rune.
+
+8
+4
+0 س
+2 ل
+4 ا
+6 م

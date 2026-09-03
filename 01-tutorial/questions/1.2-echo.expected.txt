@@ -1,0 +1,11 @@
+# go run 1.2-echo.go hello go
+#
+# stdout (args after the program name, joined by one space):
+
+hello go
+
+# go run 1.2-echo.go
+#
+# stderr, then exit status 1. Wording can differ:
+
+usage: 1.2-echo.go [text...]

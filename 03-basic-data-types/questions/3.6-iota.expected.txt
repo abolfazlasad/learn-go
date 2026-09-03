@@ -1,0 +1,8 @@
+# go run 3.6-iota.go
+#
+# KB, MB, GB, TB as successive powers of 1024.
+
+1024
+1048576
+1073741824
+1099511627776
