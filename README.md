@@ -43,7 +43,7 @@ go run 1.1-hello-world.go
 When I want a module at the repo root:
 
 ```bash
-go mod init github.com/abolfazl/learn-go
+go mod init github.com/abolfazlasad/learn-go
 ```
 
 
