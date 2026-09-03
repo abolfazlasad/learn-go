@@ -7,7 +7,7 @@ I am learning Go by writing programs, not by reading a chapter end to end. This 
 The agent **generates questions**. I **answer them myself in code**.
 
 1. The agent adds a `.go` file under `NN-chapter/questions/`. The file is a question: a comment block describes what to build, which syntax and ideas to use, and how to run it.
-2. I run `make questions`, then fill in the copy in the chapter folder. The agent must not write the solution, complete `TODO`s, or paste the finished implementation.
+2. I run `make questions`, then fill in the copy in `NN-chapter/myAnswer/`. The agent must not write the solution, complete `TODO`s, or paste the finished implementation.
 3. I run the file, fix compiler errors, and check the chapter README box when I am done.
 4. If I am stuck, I read **only that section** of the book, then come back and write the code from memory.
 
@@ -15,11 +15,11 @@ Do not copy-paste from the book or the internet. Struggle first.
 
 ## Files
 
-The agent writes question templates under each chapter’s `questions/` directory, for example `01-tutorial/questions/1.1-hello-world.go`. Those files are the generated samples. I copy them out and edit the copy.
+The agent writes question templates under each chapter’s `questions/` directory, for example `01-tutorial/questions/1.1-hello-world.go`. Those files are the generated samples. I copy them into `myAnswer/` and edit the copy.
 
 ```bash
-make questions         # copy a template into the chapter dir only if that file is not already there
-make clean-questions   # delete the copies in the chapter dir (templates in questions/ stay)
+make questions         # copy a template into myAnswer/ only if that file is not already there
+make clean-questions   # delete the copies in myAnswer/ (templates in questions/ stay)
 ```
 
 `make questions` never overwrites a file I already started. `make clean-questions` removes my working copies, including edits.
@@ -27,7 +27,7 @@ make clean-questions   # delete the copies in the chapter dir (templates in ques
 Run one file at a time so programs do not collide:
 
 ```bash
-cd 01-tutorial
+cd 01-tutorial/myAnswer
 go run 1.1-hello-world.go
 ```
 
