@@ -1,35 +1,43 @@
 # Learn Go by Coding
 
-This repo follows *The Go Programming Language* (Donovan & Kernighan). You learn each topic by writing programs and solving problems, not by reading a chapter end to end.
+I am learning Go by writing programs, not by reading a chapter end to end. This repo follows *The Go Programming Language* (Donovan & Kernighan). The book is a reference I open when a task is stuck.
 
-The book is a reference you open when a task is stuck. Close it again before you write the next program.
+## How this works with the agent
 
-## How to work a section
+The agent **generates questions**. I **answer them myself in code**.
 
-1. Open the chapter folder. Put that section's program there, named like `1.1-hello-world.go`.
-2. Try the first coding task **without** reading the section.
-3. When you are stuck, read **only that section** in the book. Type examples yourself. Do not copy-paste.
-4. Close the book. Finish the drills from memory, then the problems.
-5. Check the boxes in that chapter's `README.md`.
-6. Do not start the next section until you can explain the concept out loud and the problems pass.
+1. The agent adds a `.go` file under `NN-chapter/questions/`. The file is a question: a comment block describes what to build, which syntax and ideas to use, and how to run it.
+2. I run `make questions`, then fill in the copy in the chapter folder. The agent must not write the solution, complete `TODO`s, or paste the finished implementation.
+3. I run the file, fix compiler errors, and check the chapter README box when I am done.
+4. If I am stuck, I read **only that section** of the book, then come back and write the code from memory.
 
-One file per idea. Run a single file so programs do not collide:
+Do not copy-paste from the book or the internet. Struggle first.
+
+## Files
+
+The agent writes question templates under each chapter’s `questions/` directory, for example `01-tutorial/questions/1.1-hello-world.go`. Those files are the generated samples. I copy them out and edit the copy.
+
+```bash
+make questions         # copy a template into the chapter dir only if that file is not already there
+make clean-questions   # delete the copies in the chapter dir (templates in questions/ stay)
+```
+
+`make questions` never overwrites a file I already started. `make clean-questions` removes my working copies, including edits.
+
+Run one file at a time so programs do not collide:
 
 ```bash
 cd 01-tutorial
 go run 1.1-hello-world.go
 ```
 
-When you want a module at the repo root:
+When I want a module at the repo root:
 
 ```bash
 go mod init github.com/abolfazl/learn-go
 ```
 
-
-
 ## Chapters
-
 
 | Chapter | Folder |
 | --- | --- |
@@ -47,12 +55,9 @@ go mod init github.com/abolfazl/learn-go
 | 12. Reflection | [`12-reflection/`](12-reflection/README.md) |
 | 13. Low-Level Programming | [`13-low-level-programming/`](13-low-level-programming/README.md) |
 
-
-Preface pages (origins, the Go project, how the book is organized): skim once, then start Chapter 1. No folder.
+Preface pages (origins, the Go project, how the book is organized): skim once, then start Chapter 1.
 
 ## Progress
-
-Mark these when a whole chapter is done.
 
 - [ ] 1. Tutorial
 - [ ] 2. Program Structure
@@ -68,13 +73,10 @@ Mark these when a whole chapter is done.
 - [ ] 12. Reflection
 - [ ] 13. Low-Level Programming
 
-
-
 ## Rules
 
-- Compile often. Read the error. Fix that error. Do not guess in the dark.
+- Compile often. Read the error. Fix that error.
 - Break programs on purpose. The compiler is part of the lesson.
-- Prefer `gofmt` / `go fmt .` before you leave a folder.
-- Book exercises at the end of a section are extra, not a replacement for the problems here.
-- Do not copy solutions from the internet. Struggle, then look only at the book section.
-
+- Run `gofmt` / `go fmt` on a file before leaving it.
+- Chapter README checklists are the map. `.go` question files are the work.
+- The agent generates the next question when I ask. I write every solution.
