@@ -1,6 +1,8 @@
 # go run 4.3-wordcount.go go go rust go
+# cat ../input/4.3-wordcount.input.txt | go run 4.3-wordcount.go
 #
 # Counts, keys printed in sorted order. A missing-key lookup uses v, ok := m[k].
+# stdin (input/4.3-wordcount.input.txt): go go rust go
 
 go 3
 rust 1

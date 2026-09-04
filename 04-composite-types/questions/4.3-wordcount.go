@@ -10,6 +10,7 @@
 //
 // Run:
 //   go run 4.3-wordcount.go go go rust go
+//   cat ../input/4.3-wordcount.input.txt | go run 4.3-wordcount.go
 
 package main
 
